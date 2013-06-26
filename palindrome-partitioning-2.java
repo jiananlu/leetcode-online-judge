@@ -1,3 +1,5 @@
+// small passed; large not passed
+
 public class Solution {
     public int minCut(String s) {
         return minCut(s, 0);
