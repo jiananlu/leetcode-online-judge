@@ -141,3 +141,41 @@ public class Solution {
 		}
     }
 }
+
+/*
+Progress: 16/16 test cases passed.
+input	output	expected	
+[]	[]	[]	
+   
+["X"]	["X"]	["X"]	
+   
+["O"]	["O"]	["O"]	
+   
+["OO","OO"]	["OO","OO"]	["OO","OO"]	
+   
+["XO","OX"]	["XO","OX"]	["XO","OX"]	
+   
+["XXX","XOX","XXX"]	["XXX","XXX","XXX"]	["XXX","XXX","XXX"]	
+   
+["XXX","XXX","XXX"]	["XXX","XXX","XXX"]	["XXX","XXX","XXX"]	
+   
+["OOO","OOO","OOO"]	["OOO","OOO","OOO"]	["OOO","OOO","OOO"]	
+   
+["OOO","OXO","OOO"]	["OOO","OXO","OOO"]	["OOO","OXO","OOO"]	
+   
+["XOX","XOX","XOX"]	["XOX","XOX","XOX"]	["XOX","XOX","XOX"]	
+   
+["XOX","OXO","XOX"]	["XOX","OXO","XOX"]	["XOX","OXO","XOX"]	
+   
+["OXO","XOX","OXO"]	["OXO","XXX","OXO"]	["OXO","XXX","OXO"]	
+   
+["XOXX","OXOX","XOXO","OXOX"]	["XOXX","OXXX","XXXO","OXOX"]	["XOXX","OXXX","XXXO","OXOX"]	
+   
+["OXXOX","XOOXO","XOXOX","OXOOO","XXOXO"]	["OXXOX","XXXXO","XXXOX","OXOOO","XXOXO"]	["OXXOX","XXXXO","XXXOX","OXOOO","XXOXO"]	
+   
+["XXXXX","XOOOX","XXOOX","XXXOX","XOXXX"]	["XXXXX","XXXXX","XXXXX","XXXXX","XOXXX"]	["XXXXX","XXXXX","XXXXX","XXXXX","XOXXX"]	
+   
+["OOOOOO","OXXXXO","OXOOXO","OXOOXO","OXXXXO","OOOOOO"]	["OOOOOO","OXXXXO","OXXXXO","OXXXXO","OXXXXO","OOOOOO"]	["OOOOOO","OXXXXO","OXXXXO","OXXXXO","OXXXXO","OOOOOO"]	
+   
+
+*/
