@@ -1,3 +1,39 @@
+/* Example tree:
+       5
+     /   \
+    3    2
+   /\    /
+  7  0  6 
+    /
+   0
+traverse(root):
+	stack.push(root)
+	orders.push(true)
+	while (!stack.isEmpty):
+		node = stack.pop
+		order = orders.pop
+		if order == null:
+			continue
+		if node.left == null && node.right == null:
+			print the stack
+			continue
+		if (order):
+			if node.left != null:
+				stack.push(node)
+				orders.push(false)
+				stack.push(node.left)
+				orders.push(true)
+				continue
+		else:
+			if node.right != null:
+				stack.push(node)
+				orders.push(null)
+				stack.push(node.right)
+				orders.push(true)
+				continue
+		
+*/
+
 /**
 * Definition for binary tree
 * public class TreeNode {
@@ -6,42 +42,6 @@
 *     TreeNode right;
 *     TreeNode(int x) { val = x; }
 * }
-*/
-
-/* Example tree:
-5
-/   \
-3    2
-/\    /
-7  0  6 
-/
-0
-traverse(root):
-stack.push(root)
-orders.push(true)
-while (!stack.isEmpty):
-node = stack.pop
-order = orders.pop
-if order == null:
-continue
-if node.left == null && node.right == null:
-print the stack
-continue
-if (order):
-if node.left != null:
-stack.push(node)
-orders.push(false)
-stack.push(node.left)
-orders.push(true)
-continue
-else:
-if node.right != null:
-stack.push(node)
-orders.push(null)
-stack.push(node.right)
-orders.push(true)
-continue
-		
 */
 
 public class Solution {
