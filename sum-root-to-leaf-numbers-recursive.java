@@ -1,70 +1,112 @@
-// small passed
 /**
- * Definition for binary tree
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-
-/*{5,3,2,7,0,6,#,#,#,0}	1593	6363	** not passed
-
-          5
-        /   \
-       3    2
-      /\    /
-     7  0  6 
-       /
-      0
-   
-537+5300+526=
+* Definition for binary tree
+* public class TreeNode {
+*     int val;
+*     TreeNode left;
+*     TreeNode right;
+*     TreeNode(int x) { val = x; }
+* }
 */
 
-/* NOTE:
-I think this problem can also be solved by non-recursive method
-like post-order traversal of the tree
+/* Example tree:
+5
+/   \
+3    2
+/\    /
+7  0  6 
+/
+0
+traverse(root):
+stack.push(root)
+orders.push(true)
+while (!stack.isEmpty):
+node = stack.pop
+order = orders.pop
+if order == null:
+continue
+if node.left == null && node.right == null:
+print the stack
+continue
+if (order):
+if node.left != null:
+stack.push(node)
+orders.push(false)
+stack.push(node.left)
+orders.push(true)
+continue
+else:
+if node.right != null:
+stack.push(node)
+orders.push(null)
+stack.push(node.right)
+orders.push(true)
+continue
+		
 */
-
 
 public class Solution {
-    public int sumNumbers(TreeNode root) {
+	public int sumNumbers(TreeNode root) {
 		if (root == null) {
 			return 0;
 		}
 		int sum = 0;
-		for (String i: numbers(root)) {
-			sum += Integer.valueOf(i);
-		}
-		return sum;
-    }
-	
-	public ArrayList<String> numbers(TreeNode node) {
-		ArrayList<String> list = new ArrayList<String>();
+		Stack<TreeNode> nodes = new Stack<TreeNode>();
+		Stack<Boolean> orders = new Stack<Boolean>(); // true: not enter left tree; false: from left tree
+		nodes.push(root);
+		orders.push(true);
 		
-		if (node.left == null && node.right == null) {
-			// this is a leaf
-			list.add(Integer.toString(node.val));
-			return list;
-		}
-		if (node.left != null) {
-			for (String s: numbers(node.left)) {
-				list.add(new String(node.val + s));
+		while(!nodes.isEmpty()) {
+			TreeNode node = nodes.pop();
+			Boolean order = orders.pop();
+			if (order == null) {
+				continue;
 			}
-		}
-		if (node.right != null) {
-			for (String s: numbers(node.right)) {
-				list.add(new String(node.val + s));
+			if (node.left == null && node.right == null) {
+				int tempSum = 0;
+				for (TreeNode n: nodes) {
+					tempSum += n.val;
+					tempSum *= 10;
+				}
+				tempSum += node.val;
+				sum += tempSum;
+				continue;
 			}
-		}
-		return list;
+			if (order) {
+				if (node.left != null) {
+					nodes.push(node);
+					orders.push(false);
+					nodes.push(node.left);
+					orders.push(true);
+					continue;
+				}
+				else {
+					nodes.push(node);
+					orders.push(false);
+					continue;
+				}
+			}
+			else {
+				if (node.right != null) {
+					nodes.push(node);
+					orders.push(null);
+					nodes.push(node.right);
+					orders.push(true);
+					continue;
+				}
+				else {
+					nodes.push(node);
+					orders.push(null);
+					continue;
+				}
+			} // of if-else
+		} // of while
+		return sum;
 	}
 }
 
-/* test cases
+/* test cases:
 Run Status: Accepted!
-Program Runtime: 572 milli secs
+Program Runtime: 600 milli secs
 Progress: 10/10 test cases passed.
 input	output	expected	
 {}	0	0	
@@ -88,7 +130,7 @@ input	output	expected
 {4,9,0,#,1}	531	531	
    
 Run Status: Accepted!
-Program Runtime: 720 milli secs
+Program Runtime: 632 milli secs
 Progress: 109/109 test cases passed.
 input	output	expected	
 {}	0	0	
