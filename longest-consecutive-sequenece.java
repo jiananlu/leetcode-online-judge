@@ -144,10 +144,10 @@ public class Solution {
 			return true;
 		}
 	}
-    public int longestConsecutive(int[] num) {
+	public int longestConsecutive(int[] num) {
 		if (num.length == 0)
 			return 0;
-        int longest = 1;
+		int longest = 1;
 		List<Range> ranges = new LinkedList<Range>();
 		ranges.add(new Range(num[0], num[0]));
 		
@@ -181,7 +181,7 @@ public class Solution {
 			}
 		}
 		return longest;
-    }
+	}
 }
 
 /*
