@@ -1,5 +1,6 @@
 package us.jianan;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -45,7 +46,8 @@ public class Solution {
 			return true;
 		}
 	}
-    public int longestConsecutive(int[] num) {
+	
+	public int longestConsecutive(int[] num) {
 		if (num.length == 0)
 			return 0;
         int longest = 1;
@@ -83,4 +85,33 @@ public class Solution {
 		}
 		return longest;
     }
+	
+	// solution from:
+	// http://discuss.leetcode.com/questions/1070/longest-consecutive-sequence
+	public int findLongestConsequence(int[] a) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    int max = 1;
+	    for (int i : a) {
+	        if (map.containsKey(i)) continue;
+	        map.put(i, 1);
+	        if (map.containsKey(i - 1)) {
+	            max = Math.max(max, merge(map, i-1, i));
+	        }
+	        if (map.containsKey(i + 1)) {
+	            max = Math.max(max, merge(map, i, i+1));
+	        }
+	    }
+	    return max;
+	}
+
+	private int merge(HashMap<Integer, Integer> map, int left, int right) {
+	    int upper = right + map.get(right) - 1;
+	    int lower = left - map.get(left) + 1;
+	    int len = upper - lower + 1;
+	    map.put(upper, len);
+	    map.put(lower, len);
+	    return len;
+	}
+
+    
 }
